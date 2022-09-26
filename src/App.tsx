@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+import { AppContextProvider } from './context/AppContext'
 import './App.css';
+import { ItemPage } from './components/ItemPage';
+import { ListPage } from './components/ListPage';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppContextProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<ListPage />} />
+            <Route path="/item/:id" element={<ItemPage />} />
+          </Routes>
+        </Router>
+      </AppContextProvider>
     </div>
   );
 }
